@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+        <buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+        <buildpathentry kind="con" path="org.eclipse.dltk.USER_LIBRARY/PEAR"/>
+        <buildpathentry kind="src" path="src/app/code/local/<Namespace>/<Module>/sql/<module>_setup"/>
+        <buildpathentry kind="src" path="src/app/design/frontend/default/default/template/<module>"/>
+        <buildpathentry kind="src" path="src/app/code/local/<Namespace>/<Module>/controllers"/>
+        <buildpathentry kind="src" path="tests/app/code/local/<Namespace>/<Module>"/>
+        <buildpathentry kind="src" path="src/app/code/local/<Namespace>/<Module>/Helper"/>
+        <buildpathentry kind="src" path="src/app/code/local/<Namespace>/<Module>/Block"/>
+        <buildpathentry kind="src" path="src/app/code/local/<Namespace>/<Module>/Model"/>
+</buildpath>

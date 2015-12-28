@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Faett_PEAR
+ *
+ * NOTICE OF LICENSE
+ * 
+ * Faett_PEAR is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * Faett_PEAR is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with Faett_PEAR.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Faett_PEAR to newer
+ * versions in the future. If you wish to customize Faett_PEAR for your
+ * needs please refer to http://www.faett.net for more information.
+ *
+ * @category   Faett
+ * @package    Faett_PEAR
+ * @copyright  Copyright (c) 2009 <tw@faett.net> Tim Wagner
+ * @license    <http://www.gnu.org/licenses/> 
+ * 			   GNU General Public License (GPL 3)
+ */
+-->
+<commands version="1.0">
+	<mage-package>
+		<summary>Build Magento Package</summary>
+		<function>doPackage</function>
+		<shortcut>mp</shortcut>
+		<options>
+			<targetdir>
+				<shortopt>T</shortopt>
+				<doc>Target directory for package file.</doc>
+				<arg>TARGETDIR</arg>
+			</targetdir>
+		</options>
+		<doc>[descfile] Creates a Magento specific PEAR package from its description file.</doc>
+	</mage-package>
+	<mage-project>
+		<summary>Create folder structure and configuration files for a Magento extension</summary>
+		<function>doProject</function>
+		<shortcut>mpr</shortcut>
+		<options>
+			<targetdir>
+				<shortopt>T</shortopt>
+				<doc>Target directory for folder sturcture and configuration files.
+				</doc>
+				<arg>TARGETDIR</arg>
+			</targetdir>
+			<module>
+				<shortopt>M</shortopt>
+				<doc>Name of Extension to create.</doc>
+				<arg>MODULE</arg>
+			</module>
+			<namespace>
+				<shortopt>N</shortopt>
+				<doc>Namespace of Extension.</doc>
+				<arg>NAMESPACE</arg>
+			</namespace>
+			<interface>
+				<shortopt>I</shortopt>
+				<doc>Name of Interface to use.</doc>
+				<arg>INTERFACE</arg>
+			</interface>
+			<theme>
+				<shortopt>Z</shortopt>
+				<doc>Name of Theme to use.</doc>
+				<arg>THEME</arg>
+			</theme>
+		</options>
+		<doc>[descfile] Creates the basic folder structur and configuration files for a Magento extension.</doc>
+	</mage-project>
+	<generate-contents>
+		<summary>Generates contents node in package2.xml</summary>
+		<function>doGenerateContents</function>
+		<shortcut>mgc</shortcut>
+		<options>
+			<templatefile>
+				<shortopt>T</shortopt>
+				<doc>Path to template package2.xml</doc>
+				<arg>TEMPLATEFILE</arg>
+			</templatefile>
+			<srcdir>
+				<shortopt>S</shortopt>
+				<doc>Path to source code folder.</doc>
+				<arg>SRCDIR</arg>
+			</srcdir>
+			<destinationdir>
+				<shortopt>D</shortopt>
+				<doc>Path to destination folder where to save the generated package2.xml</doc>
+				<arg>DESTINATIONDIR</arg>
+			</destinationdir>
+			<modulename>
+				<shortopt>M</shortopt>
+				<doc>Name of the Module.</doc>
+				<arg>MODULENAME</arg>
+			</modulename>
+		</options>
+		<doc>[descfile] Generates the contents node in a template package2.xml file.</doc>
+	</generate-contents>	
+</commands>

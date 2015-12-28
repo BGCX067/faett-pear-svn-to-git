@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<project name="Faett_PEAR" default="build" basedir=".">
+	<property environment="env" />
+	<property name="namespace" value="Faett" />
+	<property name="module" value="PEAR" />
+	<property name="unique.name" value="${namespace}_${module}" />
+	<property name="pear.dir" value="${basedir}/pear" />
+	<property name="src.dir" value="${basedir}/src" />
+	<property name="test.dir" value="${basedir}/tests" />
+	<property name="target.dir" value="${basedir}/target" />
+	<property name="build.dir" value="${target.dir}/${namespace}/${module}" />
+	<property name="mage.build.dir" value="${target.dir}/lib" />
+	<property file="${basedir}/build.properties" />
+	<property file="${basedir}/build.default.properties" />
+	<!-- ==================================================================== -->
+	<!-- Cleans the directories with the generated source files				  -->
+	<!-- ==================================================================== -->
+	<target name="clean" description="Cleans almost everything, so use carefully.">
+		<delete dir="${target.dir}" includeemptydirs="true" quiet="false" verbose="true" failonerror="true" />
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Prepares all the required directories								  -->
+	<!-- ==================================================================== -->
+	<target name="prepare" depends="clean" description="Prepares all the required directories.">
+		<mkdir dir="${target.dir}" />
+		<mkdir dir="${target.dir}/reports" />
+		<mkdir dir="${target.dir}/reports/coverage" />
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Copies the sources to the target directory							  -->
+	<!-- ==================================================================== -->
+	<target name="copy" depends="prepare" description="Copies the sources to the target directory.">
+		<copy todir="${build.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*" />
+			</fileset>
+		</copy>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Copies the package definition file to the target directory and		  -->
+	<!-- completes the contents node in package2.xml						  -->
+	<!-- ==================================================================== -->
+	<target name="pre-package" depends="copy" description="Copies the package definition file to the target directory.">
+		<tstamp>
+			<format property="actual.date" pattern="yyyy-MM-dd" locale="en" />
+		</tstamp>
+		<tstamp>
+			<format property="actual.time" pattern="hh:mm:ss" locale="en" />
+		</tstamp>
+		<copy tofile="${build.dir}/package2.xml" file="${pear.dir}/package2.xml">
+			<filterchain>
+				<expandproperties />
+			</filterchain>
+		</copy>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Generates the PEAR package                                           -->
+	<!-- ==================================================================== -->
+	<target name="create-package" depends="pre-package" description="Generates the PEAR package.">
+		<exec dir="${build.dir}" command="pear package package2.xml" />
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Generates the API documentation									  -->
+	<!-- ==================================================================== -->
+	<target name="apidoc" depends="copy" description="Generates the API documentation.">
+		<exec executable="${bin.dir}/phpdoc" dir="${build.dir}">
+			<arg line="-ct type -ue on -t ${target.dir}/docs -o HTML:Smarty:PHP -d ${src.dir}" />
+		</exec>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Runs the code sniffer and generates a report						  -->
+	<!-- ==================================================================== -->
+	<target name="sniffer" depends="apidoc" description="Runs the code sniffer and generates a report.">
+		<exec command="${bin.dir}/phpcs --standard=ZEND --report=checkstyle --report-file=${target.dir}/reports/checkstyle.xml ${src.dir} " />
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Runs the PHPDepend tool and generats a graphs                        -->
+	<!-- ==================================================================== -->
+	<target name="pdepend" depends="sniffer" description="Runs the PHPDepend tool and generats a graphs.">
+		<exec command="${bin.dir}/pdepend" dir="${src.dir}" failonerror="true">
+			<arg line="--summary-xml=${basedir}/target/reports/pdepend.xml --jdepend-chart=${target.dir}/reports/pdepend.svg --overview-pyramid=${target.dir}/reports/pdepend-pyramid.svg ." />
+		</exec>
+		<xslt style="/usr/share/ant/etc/jdepend.xsl" in="${target.dir}/reports/pdepend.xml" out="${target.dir}/reports/pdepend.html" />
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Copies the test sources to the target directory					  -->
+	<!-- ==================================================================== -->
+	<target name="copy-tests" depends="pdepend" description="Copies the test sources to the target directory.">
+		<copy todir="${build.dir}">
+			<fileset dir="${test.dir}">
+				<include name="**/*" />
+			</fileset>
+			<filterchain>
+				<expandproperties />
+			</filterchain>
+		</copy>
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Runs the PHPUnit tests and generates a report						  -->
+	<!-- ==================================================================== -->
+	<target name="run-tests" depends="copy-tests" description="Runs the PHPUnit tests and generates a report.">
+		<exec dir="${target.dir}" command="${bin.dir}/phpunit --log-xml ${target.dir}/reports/phpunit.xml --log-pmd ${target.dir}/reports/phpunit.pmd.xml --coverage-clover ${target.dir}/reports/coverage/clover.xml --coverage-html ${target.dir}/reports/coverage/ ${namespace}/${module}/AllTests" />
+		<xslt style="phpunit-to-hudson.xsl" in="${target.dir}/reports/phpunit.xml" out="${target.dir}/reports/phpunit.hudson.xml" />
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Runs the PHPUnit tests and generates a report						  -->
+	<!-- ==================================================================== -->
+	<target name="build" depends="run-tests" description="Runs the PHPUnit tests and generates a report.">
+		<!-- add Hudson build here -->
+	</target>
+	<!-- ==================================================================== -->
+	<!-- Copies the sources to the deploy directory     					  -->
+	<!-- ==================================================================== -->
+	<target name="deploy" depends="create-package" description="Copies the package to the repository.">
+		<copy todir="${user.home}/.repository" file="${build.dir}/${unique.name}-${version}.tgz"/>
+	</target>
+</project>

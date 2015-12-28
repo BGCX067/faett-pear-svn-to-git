@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package packagerversion="1.8.1" version="2.0"
+	xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+	<name>${ant.project.name}</name>
+	<channel>www.faett.net</channel>
+	<summary>The roles necessary to create PEAR package from a magento extension</summary>
+	<description>
+		This package contains the roles necessary to create a PEAR
+		package from the files of a Magento extension.
+	</description>
+	<lead>
+		<name>Tim Wagner</name>
+		<user>wagnert</user>
+		<email>t.wagner@techdivision.com</email>
+		<active>yes</active>
+	</lead>
+	<date>${actual.date}</date>
+	<time>${actual.time}</time>
+	<version>
+		<release>${version}</release>
+		<api>${api.version}</api>
+	</version>
+	<stability>
+		<release>${release.stability}</release>
+		<api>${api.stability}</api>
+	</stability>
+	<license filesource="http://www.gnu.org/licenses/gpl-3.0.txt">GPL 3</license>
+	<notes>
+		- Added mageweb role to ContentsGenerator
+ 	</notes>
+	<contents>
+		<dir name="/">
+			<dir baseinstalldir="PEAR" name="Command">
+				<dir name="blank">
+					<file name="project" role="data" />
+					<file name="buildpath" role="data" />
+					<file name="build.xml" role="data" />
+					<file name="build.properties" role="data" />
+					<file name="build.default.properties" role="data" />
+					<file name="phpunit-to-hudson.xsl" role="data" />
+					<dir name="pear">
+						<file name="package2.xml" role="data" />
+					</dir>
+					<dir name="tests">
+						<dir name="app">
+							<dir name="code">
+								<dir name="local">
+									<dir name="Namespace">
+										<dir name="Module">
+											<file name="AllTests.php" role="data" />
+										</dir>
+									</dir>
+								</dir>
+							</dir>
+						</dir>
+					</dir>
+					<dir name="src">
+						<dir name="app">
+							<dir name="code">
+								<dir name="local">
+									<dir name="Namespace">
+										<dir name="Module">
+											<dir name="Block">
+												<dir name="Adminhtml">
+													<dir name="Module">
+														<dir name="Edit">
+															<dir name="Tab">
+																<file name="Form.php" role="data" />
+															</dir>
+															<file name="Form.php" role="data" />
+															<file name="Tabs.php" role="data" />
+														</dir>
+														<file name="Edit.php" role="data" />
+														<file name="Grid.php" role="data" />
+													</dir>
+													<file name="Module.php" role="data" />
+												</dir>
+												<file name="Module.php" role="data" />
+											</dir>
+											<dir name="controllers">
+												<dir name="Adminhtml">
+													<file name="ModuleController.php" role="data" />
+												</dir>
+												<file name="IndexController.php" role="data" />
+											</dir>
+											<dir name="etc">
+												<file name="config.xml" role="data" />
+											</dir>
+											<dir name="Helper">
+												<file name="Data.php" role="data" />
+											</dir>
+											<dir name="Model">
+												<dir name="Mysql4">
+													<dir name="Module">
+														<file name="Collection.php" role="data" />
+													</dir>
+													<file name="Module.php" role="data" />
+												</dir>
+												<file name="Module.php" role="data" />
+												<file name="Status.php" role="data" />
+											</dir>
+											<dir name="sql">
+												<dir name="module_setup">
+													<file name="mysql4-install-0.1.0.php" role="data" />
+												</dir>
+											</dir>
+										</dir>
+									</dir>
+								</dir>
+							</dir>
+							<dir name="design">
+								<dir name="adminhtml">
+									<dir name="interface">
+										<dir name="theme">
+											<dir name="layout">
+												<file name="module.xml" role="data" />
+											</dir>
+										</dir>
+									</dir>
+								</dir>
+								<dir name="frontend">
+									<dir name="interface">
+										<dir name="theme">
+											<dir name="layout">
+												<file name="module.xml" role="data" />
+											</dir>
+											<dir name="template">
+												<dir name="module">
+													<file name="module.phtml" role="data" />
+												</dir>
+											</dir>
+										</dir>
+									</dir>
+								</dir>
+							</dir>
+							<dir name="etc">
+								<dir name="modules">
+									<file name="Namespace_Module.xml" role="data" />
+								</dir>
+							</dir>
+						</dir>
+					</dir>
+				</dir>
+				<dir name="Mage">
+					<file name="ContentsGenerator.php" role="php" />
+				</dir>
+				<file name="Mage.xml" role="php" />
+				<file name="Mage.php" role="php" />
+			</dir>
+			<dir baseinstalldir="PEAR" name="Installer">
+				<dir name="Role">
+					<file name="Mage.xml" role="php" />
+					<file name="Mage.php" role="php" />
+					<file name="Magecommunity.xml" role="php" />
+					<file name="Magecommunity.php" role="php" />
+					<file name="Magecore.xml" role="php" />
+					<file name="Magecore.php" role="php" />
+					<file name="Magedesign.xml" role="php" />
+					<file name="Magedesign.php" role="php" />
+					<file name="Mageetc.xml" role="php" />
+					<file name="Mageetc.php" role="php" />
+					<file name="Magelib.xml" role="php" />
+					<file name="Magelib.php" role="php" />
+					<file name="Magelocal.xml" role="php" />
+					<file name="Magelocal.php" role="php" />
+					<file name="Magelocale.xml" role="php" />
+					<file name="Magelocale.php" role="php" />
+					<file name="Magemedia.xml" role="php" />
+					<file name="Magemedia.php" role="php" />
+					<file name="Mageskin.xml" role="php" />
+					<file name="Mageskin.php" role="php" />
+					<file name="Magetest.xml" role="php" />
+					<file name="Magetest.php" role="php" />
+					<file name="Mageweb.xml" role="php" />
+					<file name="Mageweb.php" role="php" />
+				</dir>
+			</dir>
+			<dir baseinstalldir="Faett/PEAR" name="xhprof_lib">
+				<dir name="display">
+					<file name="typeahead_common.php" role="php"/>
+					<file name="xhprof.php" role="php"/>
+				</dir>
+				<dir name="utils">
+					<file name="callgraph_utils.php" role="php"/>
+					<file name="xhprof_lib.php" role="php"/>
+					<file name="xhprof_runs.php" role="php"/>
+				</dir>
+			</dir>
+			<file baseinstalldir="Faett/PEAR" name="TestSuite.php" role="php" />
+		</dir>
+	</contents>
+	<dependencies>
+		<required>
+			<php>
+				<min>5.2.3</min>
+				<max>6.0</max>
+			</php>
+			<pearinstaller>
+				<min>1.6.2</min>
+			</pearinstaller>
+			<package>
+				<name>PEAR</name>
+				<channel>pear.php.net</channel>
+				<min>1.4.3</min>
+			</package>
+			<package>
+				<name>PHPUnit</name>
+				<channel>pear.phpunit.de</channel>
+			</package>
+			<package>
+				<name>PHP_CodeSniffer</name>
+				<channel>pear.php.net</channel>
+			</package>
+			<package>
+				<name>PhpDocumentor</name>
+				<channel>pear.php.net</channel>
+			</package>
+			<package>
+				<name>PHP_Depend</name>
+				<channel>pear.pdepend.org</channel>
+			</package>
+		</required>
+	</dependencies>
+	<phprelease />
+	<changelog>
+		<release>
+			<version>
+				<release>${version}</release>
+				<api>${api.version}</api>
+			</version>
+			<stability>
+				<release>${release.stability}</release>
+				<api>${api.stability}</api>
+			</stability>
+			<date>${actual.date}</date>
+			<license uri="http://www.gnu.org/licenses/gpl-3.0.txt">GPL 3</license>
+			<notes>
+				- Added mageweb role to ContentsGenerator
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.3</release>
+				<api>0.1.1</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-28</date>
+			<license uri="http://www.gnu.org/licenses/gpl-3.0.txt">GPL 3</license>
+			<notes>
+				- Bugfixing invalid path to pear binary in build.xml create-package target
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.2</release>
+				<api>0.1.1</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-28</date>
+			<license uri="http://www.gnu.org/licenses/gpl-3.0.txt">GPL 3</license>
+			<notes>
+				- Add TestSuite for XHProf enabled PHPUnit tests
+				- Add TestSuite AllTests
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.1</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-28</date>
+			<license uri="http://www.gnu.org/licenses/gpl-3.0.txt">GPL 3</license>
+			<notes>
+				- Removing build.xml filterchain task from copy target
+				- Removing unnecessary TechDivision channel initialization
+				- Adding new faett.net channel initialization with username and password
+			</notes>
+		</release>
+		<release>
+			<version>
+				<release>0.1.0</release>
+				<api>0.1.0</api>
+			</version>
+			<stability>
+				<release>beta</release>
+				<api>beta</api>
+			</stability>
+			<date>2010-05-28</date>
+			<license uri="http://www.gnu.org/licenses/gpl-3.0.txt">GPL 3</license>
+			<notes>
+				- Initial Release
+			</notes>
+		</release>
+	</changelog>
+</package>
